@@ -70,3 +70,7 @@
 シークレットシーンです．普通にこのページに遷移することはできません．探してみてください．
 - このゲームの本当の意味を知ることができます．
 ```
+
+### ゲームのプレイ動画　※ネタバレ注意
+
+GoogleDriveURL:[https://drive.google.com/drive/folders/1BAYc3_ENDM0UjTK3_W5smHmHbnKhcaT1?usp=drive_link](https://drive.google.com/drive/folders/1BAYc3_ENDM0UjTK3_W5smHmHbnKhcaT1?usp=drive_link)
