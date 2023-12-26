@@ -83,6 +83,12 @@ WebGL とは（Web Graphics Library）で，互換性があるウェブブラウ
 14. 公開設定<br>
     一般公開
 
+### gz ファイルでビルドする方法
+
+1. project settings を開く
+2. publish settings の項目に移動する
+3. Brip となっているものを，Gzip に変更する．
+
 ### 参考
 
 1. [UnityGameJam](https://unityroom.com/unity1weeks) - 2023 年 12 月
