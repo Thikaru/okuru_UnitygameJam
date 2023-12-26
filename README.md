@@ -18,6 +18,8 @@
 
 ### [「お」くる 詳細ページへ](okuru_detail.md)
 
+Unity ゲームジャムゲームページ：「[https://unityroom.com/games/o-kuru](https://unityroom.com/games/o-kuru)」
+
 ### 簡単なゲーム説明
 
 「お」があなたに向かってきます笑．クリックまたは，タップをしてやってくる「お」だけを倒してください．「お」が規定より近づいたらあなたの負けです．
