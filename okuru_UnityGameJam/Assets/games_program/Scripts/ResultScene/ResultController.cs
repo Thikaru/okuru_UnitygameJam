@@ -24,7 +24,7 @@ public class ResultController : MonoBehaviour
             HintMessageText.text = StaticGameLevel.HintHard;
         }
 
-        ResultPlayTimeMessageText.text = "Play Time\n" + (Mathf.Floor(StaticGameLevel.GamePlayTime *10) / 10).ToString();
+        ResultPlayTimeMessageText.text = "Play Time\n" + (Mathf.Floor(StaticGameLevel.GamePlayTime *10) / 10).ToString() + " 秒";
     }
 
     // Update is called once per frame

@@ -324,9 +324,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 47543672}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -30, y: 30}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 930, y: -510}
   m_SizeDelta: {x: 1000, y: 120}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1234435341
@@ -674,6 +674,7 @@ GameObject:
   - component: {fileID: 2019496234}
   - component: {fileID: 2019496233}
   - component: {fileID: 2019496236}
+  - component: {fileID: 2019496237}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -761,7 +762,22 @@ MonoBehaviour:
   - "\u6B21\u624B\u4F1D\u3063\u3066\u304F\u308C\u308B\u30E6\u30FC\u30B6\u3092\u63A2\u3055\u306A\u3044\u3068\u3044\u3051\u306A\u3044\u3067\u3059\u306D\u7B11"
   ShowTMPText: {fileID: 1675643470}
   TobeContinuedTMPText: {fileID: 1234435341}
-  speedFlag: 1
+  speedFlag: 2
+--- !u!114 &2019496237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019496232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 993f6a765b2294ac7bce28b107b0075e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BackGroundImage: {fileID: 47543671}
+  ShowText: {fileID: 1675643469}
+  ToBeContinuedText: {fileID: 1234435339}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -585,10 +585,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1304957243}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &596531218
 MonoBehaviour:
@@ -958,6 +958,7 @@ GameObject:
   - component: {fileID: 927190463}
   - component: {fileID: 927190466}
   - component: {fileID: 927190467}
+  - component: {fileID: 927190468}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1036,7 +1037,7 @@ MonoBehaviour:
   isTimeOver: 0
   displayTime: 0
   isCountDown: 1
-  objectJudgeTime: 5
+  objectJudgeTime: 2
 --- !u!114 &927190467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1049,6 +1050,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6541ed8971f2d438f968e6755ac6fcab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &927190468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927190462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ada8e74afed94fecb9a84c8630348c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainCanvasBackButton: {fileID: 1593102867}
+  GameTime: {fileID: 1287098776}
+  BackGroundImage: {fileID: 1753925444}
+  BackButton: {fileID: 706394994}
+  GameStartAnime: {fileID: 668908549}
+  GameEndAnime: {fileID: 1921398190}
+  StartPanel: {fileID: 596531216}
+  StartMessage: {fileID: 680179610}
+  StartMessageCanvasBackButton: {fileID: 49701934}
+  BackButtonBackButton: {fileID: 1238983041}
 --- !u!1 &1238983041
 GameObject:
   m_ObjectHideFlags: 0
@@ -1673,7 +1696,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.08, y: -0.01, z: 0.1}
   m_LocalScale: {x: 0.9264594, y: 0.919, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

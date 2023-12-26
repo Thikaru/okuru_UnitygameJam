@@ -47,6 +47,24 @@ public class TrueStoryController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (textStop == true)
+        {
+            if (Input.GetMouseButton(0) && phaseFlag != 2)
+            {
+                phaseFlag = 2;
+                backGroundObject.GetComponent<Image>().sprite = blackBackGroundSprite;
+                ShowTMPText.text = "";
+                TobeContinuedTMPText.text = "To Be Continued";
+                Invoke("TransactionStartScene", 3.0f);
+            }else if (phaseFlag == 2)
+            {
+                if (Input.GetMouseButton(0))
+                {
+                    //SceneManager.LoadScene("StartScene");
+                }
+            }
+        }
+
         // 文章表示パート
         if (textStop == false)
         {
@@ -199,16 +217,6 @@ public class TrueStoryController : MonoBehaviour
 
         }
 
-
-        // スタートページに戻る
-        if (phaseFlag == 2)
-        {
-            if (Input.GetMouseButton(0))
-            {
-                SceneManager.LoadScene("StartScene");
-            }
-        }
-
         // 「を」が登場する画面に変更
         if (textNumber == 6)
         {
@@ -220,17 +228,10 @@ public class TrueStoryController : MonoBehaviour
             backGroundObject.GetComponent<Image>().sprite = deathBackGroundSprite;
             ShowTMPText.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
         }
+    }
 
-        if (textStop == true)
-        {
-            if (Input.GetMouseButton(0))
-            {
-                phaseFlag = 2;
-                backGroundObject.GetComponent<Image>().sprite = blackBackGroundSprite;
-                ShowTMPText.text = "";
-                TobeContinuedTMPText.text = "To Be Continued";
-            }
-        }
-
+    void TransactionStartScene()
+    {
+        SceneManager.LoadScene("StartScene");
     }
 }

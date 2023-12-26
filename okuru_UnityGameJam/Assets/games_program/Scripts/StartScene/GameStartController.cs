@@ -39,4 +39,9 @@ public class GameStartController : MonoBehaviour
     {
         SceneManager.LoadScene("TrueStoryScene");
     }
+
+    public void OnClickGameChutorialMode()
+    {
+        SceneManager.LoadScene("ExplanGameScene");
+    }
 }

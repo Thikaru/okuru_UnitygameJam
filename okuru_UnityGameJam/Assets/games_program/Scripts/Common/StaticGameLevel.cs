@@ -17,14 +17,14 @@ public static class StaticGameLevel
     public static float GamePlayTime = 0;
 
     // 難易度ごとのゲーム秒数
-    public static float EasyTime = 60.0f;
-    public static float NormalTime = 60.0f;
-    public static float HardTime = 60.0f;
+    public static float EasyTime = 40.0f;
+    public static float NormalTime = 40.0f;
+    public static float HardTime = 40.0f;
 
     // 難易度ごとのTrueStoryモードヒント表示秒数
-    public static float HintEasyTime = 60;
-    public static float HintNormalTime = 90;
-    public static float HintHardTime = 120;
+    public static float HintEasyTime = 40;
+    public static float HintNormalTime = 50;
+    public static float HintHardTime = 70;
 
     // 難易度ごとに表示されるヒント情報
     public static string HintEasy = "S→3→5→2";
