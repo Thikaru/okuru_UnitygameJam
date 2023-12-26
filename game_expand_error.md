@@ -87,17 +87,3 @@
 		<td>未実装</td>
 	</tr>
 </table>
-
-<style>
-	.word-high{
-		color:red;
-	}
-
-	.word-normal{
-		color:yellow;
-	}
-
-	.word-low{
-		color:blue;
-	}
-</style>
