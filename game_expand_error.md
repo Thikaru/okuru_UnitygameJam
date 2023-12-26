@@ -61,12 +61,22 @@
 	<tr>
 		<th>優先度</th>
 		<th>バグ内容</th>
+		<th>シーン名</th>
 		<th>修正内容</th>
 		<th>期間</th>
 		<th>修正状況</th>
 	</tr>
 	<tr>
 		<td class="word-high">高</td>
+		<td>ゲーム説明のボタンが反応していなかったバグ</td>
+		<td>StartScene</td>
+		<td>スクリプトのシーンロードのシーン名が間違っていた．</td>
+		<td>すぐできる</td>
+		<td>修正完了</td>
+	</tr>
+	<tr>
+		<td class="word-high">高</td>
+		<td></td>
 		<td></td>
 		<td></td>
 		<td></td>
@@ -75,12 +85,6 @@
 	<tr>
 		<td class="word-high">高</td>
 		<td></td>
-		<td></td>
-		<td></td>
-		<td>未実装</td>
-	</tr>
-	<tr>
-		<td class="word-high">高</td>
 		<td></td>
 		<td></td>
 		<td></td>
