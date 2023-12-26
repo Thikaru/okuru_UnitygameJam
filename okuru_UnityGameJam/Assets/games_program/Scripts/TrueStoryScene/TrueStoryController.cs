@@ -72,7 +72,7 @@ public class TrueStoryController : MonoBehaviour
             // 速度設定ごとの分岐
             if (speedFlag == 0)
             {
-                if (displayTextSpeed % 10 == 0)
+                if (displayTextSpeed % 5 == 0)
                 {
                     if (textCharNumber != showTexts[textNumber].Length)
                     {
@@ -118,7 +118,7 @@ public class TrueStoryController : MonoBehaviour
             }
             else if (speedFlag == 1)
             {
-                if (displayTextSpeed % 30 == 0)
+                if (displayTextSpeed % 10 == 0)
                 {
                     if (displayTextSpeed % 1 == 0)
                     {
@@ -167,7 +167,7 @@ public class TrueStoryController : MonoBehaviour
             }
             else if (speedFlag == 2)
             {
-                if (displayTextSpeed % 60 == 0)
+                if (displayTextSpeed % 30 == 0)
                 {
                     if (displayTextSpeed % 1 == 0)
                     {
