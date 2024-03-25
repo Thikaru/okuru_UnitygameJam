@@ -10,6 +10,21 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
+    // 音楽系処理用
+    [SerializeField] private AudioSource OpenDoorAudio;
+    [SerializeField] private AudioSource CloseDoorAudio;
+    [SerializeField] private AudioSource AttackEnemyAudio;
+    [SerializeField] private AudioSource GameEndAudio;
+    // [SerializeField] private AudioSource BackGroundAudio;
+
+    // 時間追加オブジェクトを追加
+    [SerializeField] private GameObject timeCanvas;
+    public Transform parent;
+    [SerializeField] private GameObject AddTimeObject;
+    [SerializeField] private Vector3 AddTimeObjectPosition = new Vector3(-300f, 0f, 0f);
+    [SerializeField] private GameObject MinusTimeObject;
+    [SerializeField] private Vector3 MinusTimeObjectPosition = new Vector3(300f, 0f, 0f);
+
     public GameObject StartGameObject;
     public GameObject EndGameObject;
     public GameObject StartMessageCanvas;
@@ -52,6 +67,11 @@ public class GameController : MonoBehaviour
     GameObject wordObject;
     GameObject wordChildObject;
     GameObject wordTextObject;
+    public int wordExpandVelocity = 1;
+    public int sizeupCount = 0;
+    public int sizeupCountValue = 10;
+    public bool isNowO = false;
+    public int random_index;
 
     string easy_mode_true_strings = "おオoO";
     string easy_mode_false_strings = "あいうえかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわんアイウエカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワンabcdefghijklmnpqqrstuvwxygABCDEFGHIJKLMNPQRSTUVWXYZ";
@@ -64,25 +84,30 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        parent = timeCanvas.transform;
+
         StartGameObject.GetComponent<Animator>().enabled = false;
         EndGameObject.GetComponent<Animator>().enabled = false;
         //StartGameObject.SetActive(false);
         EndGameObject.SetActive(false);
-        if (StaticGameLevel.GameLevel == 1){
+        if (StaticGameLevel.GameLevel == 1)
+        {
             // Easyモード
             GameTime = StaticGameLevel.EasyTime;
             displayTime = StaticGameLevel.EasyTime;
             oString = easy_mode_true_strings;
             otherString = easy_mode_false_strings;
         }
-        else if (StaticGameLevel.GameLevel == 2){
+        else if (StaticGameLevel.GameLevel == 2)
+        {
             // Normalモード
             GameTime = StaticGameLevel.NormalTime;
             displayTime = StaticGameLevel.NormalTime;
             oString = normal_mode_true_strings;
             otherString = normal_mode_false_strings;
         }
-        else if (StaticGameLevel.GameLevel == 3){
+        else if (StaticGameLevel.GameLevel == 3)
+        {
             // Hardモード
             GameTime = StaticGameLevel.HardTime;
             displayTime = StaticGameLevel.HardTime;
@@ -95,12 +120,15 @@ public class GameController : MonoBehaviour
     void Update()
     {
 
-        if (GameFlag ==1){
+        if (GameFlag == 1)
+        {
             //ゲーム開始
             //画面がクリックされたかどうか
-            if (Input.GetMouseButtonDown(0)){
+            if (Input.GetMouseButtonDown(0))
+            {
                 StartMessageCanvas.SetActive(false);
                 // アニメーション開始
+                OpenDoorAudio.Play();
                 StartGameObject.GetComponent<Animator>().enabled = true;
                 StartGameObject.GetComponent<Animator>().Play("GameStart", 0, 0);
                 Invoke("StartGame", 1.0f);
@@ -108,7 +136,9 @@ public class GameController : MonoBehaviour
                 gameStartFlag = true;
                 GameEndFlag = false;
             }
-        }else if(GameFlag == 2){
+        }
+        else if (GameFlag == 2)
+        {
             //ゲーム中
             if (gameStartFlag == true && GameEndFlag == false)
             {
@@ -117,9 +147,16 @@ public class GameController : MonoBehaviour
 
                 if (isObject == true)
                 {
+                    if (sizeupCount >= sizeupCountValue)
+                    {
+                        wordTextObject.GetComponent<TextMeshProUGUI>().fontSize += wordExpandVelocity;
+                        sizeupCount = 0;
+                    }
+                    sizeupCount += 1;
                     objectTime += Time.deltaTime;
                     if (Input.GetMouseButtonDown(0))
                     {
+                        AttackEnemyAudio.Play();
                         Destroy(wordObject);
                         objectTime = 0;
                         isObject = false;
@@ -127,12 +164,17 @@ public class GameController : MonoBehaviour
                         if (isBeforeOWord == true)
                         {
                             increaseTimeCount += 1;
+                            StaticGameLevel.KillOWords += oString[random_index].ToString();
+                            Instantiate(AddTimeObject, AddTimeObjectPosition, Quaternion.Euler(0, 0, 0), parent);
                         }
                         else
                         {
                             decreaseTimeCount += 1;
+                            StaticGameLevel.KillOtherWords += otherString[random_index].ToString();
+                            Instantiate(MinusTimeObject, MinusTimeObjectPosition, Quaternion.Euler(0, 0, 0), parent);
                         }
-                    }else if (objectTime >= objectJudgeTime)
+                    }
+                    else if (objectTime >= objectJudgeTime)
                     {
                         Destroy(wordObject);
                         objectTime = 0;
@@ -141,10 +183,12 @@ public class GameController : MonoBehaviour
                         if (isBeforeOWord == true)
                         {
                             decreaseTimeCount += 100000;
+                            StaticGameLevel.GameOverWord += oString[random_index].ToString();
                             isTimeOver = true;
                         }
                     }
-                }else if (isObject == false)
+                }
+                else if (isObject == false)
                 {
                     wordObject = Instantiate(WordObject);
                     wordChildObject = wordObject.transform.GetChild(0).gameObject;
@@ -155,9 +199,10 @@ public class GameController : MonoBehaviour
                     if (random_num <= judgeNum)
                     {
                         //「お」と読む文字を選択
-                        int random_index = UnityEngine.Random.Range(0, oString.Length - 1);
+                        random_index = UnityEngine.Random.Range(0, oString.Length - 1);
                         wordTextObject.GetComponent<TextMeshProUGUI>().text = oString[random_index].ToString();
                         isBeforeOWord = true;
+                        isNowO = true;
 
                         if (isBeforeOWord == true)
                         {
@@ -176,9 +221,10 @@ public class GameController : MonoBehaviour
                     else
                     {
                         //「お」以外の読み方をするものを選択
-                        int random_index = UnityEngine.Random.Range(0, otherString.Length - 1);
+                        random_index = UnityEngine.Random.Range(0, otherString.Length - 1);
                         wordTextObject.GetComponent<TextMeshProUGUI>().text = otherString[random_index].ToString();
                         isBeforeOWord = false;
+                        isNowO = false;
 
                         if (isBeforeOWord == false)
                         {
@@ -207,7 +253,7 @@ public class GameController : MonoBehaviour
                     {
                         Debug.Log("Game Start 4");
                         //カウントダウン
-                        displayTime = GameTime - times + increaseTimeCount - (decreaseTimeCount *3 ) ;
+                        displayTime = GameTime - times + increaseTimeCount - (decreaseTimeCount * 3);
                         if (displayTime <= 0.0f)
                         {
                             displayTime = 0.0f;
@@ -225,7 +271,7 @@ public class GameController : MonoBehaviour
                         }
                     }
                     Debug.Log("Times : " + displayTime);
-                    ShowTimeText.text = "Time : "+ Math.Floor(displayTime).ToString();
+                    ShowTimeText.text = "Time : " + Math.Floor(displayTime).ToString();
                 }
 
                 if (isTimeOver == true)
@@ -245,10 +291,12 @@ public class GameController : MonoBehaviour
                 //EndGameObject.SetActive(true);
                 //EndGameObject.GetComponent<Animator>().enabled = true;
                 //EndGameObject.GetComponent<Animator>().Play("GameEnd", 0, 0);
+                GameEndAudio.Play();
                 Invoke("EndGame", 0.5f);
             }
         }
-        else if(GameFlag == 3){
+        else if (GameFlag == 3)
+        {
             //ゲーム終了
             EndGameObject.SetActive(true);
             EndGameObject.GetComponent<Animator>().enabled = true;
@@ -260,7 +308,7 @@ public class GameController : MonoBehaviour
                 SceneManager.LoadScene("ResultScene");
             }
         }
-        
+
     }
 
     void StartGame()
