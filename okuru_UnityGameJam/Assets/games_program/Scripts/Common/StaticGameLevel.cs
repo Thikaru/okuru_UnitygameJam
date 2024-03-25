@@ -11,7 +11,7 @@ public static class StaticGameLevel
     // ・2：Normal
     // ・3：Hard
     // ======================== //
-    public static int GameLevel = -1;
+    public static int GameLevel = 1;
 
     // ゲームの行えた秒数を保存
     public static float GamePlayTime = 0;
@@ -26,8 +26,13 @@ public static class StaticGameLevel
     public static float HintNormalTime = 50;
     public static float HintHardTime = 70;
 
+    // 倒したオブジェクトの情報
+    public static string KillOWords = "";
+    public static string KillOtherWords = "";
+    public static string GameOverWord = "";
+
     // 難易度ごとに表示されるヒント情報
-    public static string HintEasy = "S　3　5　2";
-    public static string HintNormal = "7　3　3　7　5";
-    public static string HintHard = "3　2　5　E";
+    public static string HintEasy = "S-3-5-2";
+    public static string HintNormal = "7-3-3-7-5";
+    public static string HintHard = "3-2-5-E";
 }

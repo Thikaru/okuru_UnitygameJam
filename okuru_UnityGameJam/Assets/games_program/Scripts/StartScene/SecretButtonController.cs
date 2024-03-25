@@ -15,6 +15,10 @@ public class SecretButtonController : MonoBehaviour
     // シークレットボタン呼び出しコマンドカウント
     int SuccessCount = 0;
 
+    // 音楽管理
+    [SerializeField] private AudioSource buttonAudio;
+    [SerializeField] private AudioSource AppearSecretButtonAudio;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +33,7 @@ public class SecretButtonController : MonoBehaviour
 
     public void OnClickUpLeftButton()
     {
+        buttonAudio.Play();
         if (SuccessCount == 2 || SuccessCount == 9)
         {
             SuccessCount += 1;
@@ -41,6 +46,7 @@ public class SecretButtonController : MonoBehaviour
 
     public void OnClickUpRightButton()
     {
+        buttonAudio.Play();
         if (SuccessCount == 0 || SuccessCount == 4 || SuccessCount == 5 || SuccessCount == 8)
         {
             SuccessCount += 1;
@@ -53,6 +59,7 @@ public class SecretButtonController : MonoBehaviour
 
     public void OnClickDownLeftButton()
     {
+        buttonAudio.Play();
         if (SuccessCount == 1 || SuccessCount == 7 || SuccessCount == 10)
         {
             SuccessCount += 1;
@@ -64,12 +71,14 @@ public class SecretButtonController : MonoBehaviour
 
         if (SuccessCount == 11)
         {
+            AppearSecretButtonAudio.Play();
             SecretButton.SetActive(true);
         }
     }
 
     public void OnClickDownRightButton()
     {
+        buttonAudio.Play();
         if (SuccessCount == 3 || SuccessCount == 6)
         {
             SuccessCount += 1;

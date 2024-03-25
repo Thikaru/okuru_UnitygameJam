@@ -17,7 +17,7 @@ public class TrueStoryController : MonoBehaviour
     public TMP_Text ShowTMPText;
     public TMP_Text TobeContinuedTMPText;
     bool textStop = false;
-    int displayTextSpeed=0;
+    int displayTextSpeed = 0;
     // ======================= //
     // 0:遅い
     // 1:普通
@@ -26,8 +26,11 @@ public class TrueStoryController : MonoBehaviour
     public int speedFlag;
     string displayText;
     int textNumber;
+    int beforeNumber = 0;
     int textCharNumber;
     bool click = false;
+    bool isSound = false;
+    bool isTextAll = false;
     // ======================= //
     // 0:文字を出力
     // 1:TobeContinue表示
@@ -35,6 +38,10 @@ public class TrueStoryController : MonoBehaviour
     // ======================= //
     int phaseFlag = 0;
 
+    [SerializeField] private AudioSource BackgroundAudio;
+    // [SerializeField] private AudioSource DeadUserAudio;
+    [SerializeField] private AudioClip DeadUserAudio;
+    [SerializeField] private AudioSource TypeWriterAudio;
 
     // Start is called before the first frame update
     void Start()
@@ -56,7 +63,8 @@ public class TrueStoryController : MonoBehaviour
                 ShowTMPText.text = "";
                 TobeContinuedTMPText.text = "To Be Continued";
                 Invoke("TransactionStartScene", 3.0f);
-            }else if (phaseFlag == 2)
+            }
+            else if (phaseFlag == 2)
             {
                 if (Input.GetMouseButton(0))
                 {
@@ -88,7 +96,8 @@ public class TrueStoryController : MonoBehaviour
                     }
                     else
                     {
-                        if (textNumber != showTexts.Length -1)
+                        isTextAll = true;
+                        if (textNumber != showTexts.Length - 1)
                         {
                             if (click == true)
                             {
@@ -136,6 +145,7 @@ public class TrueStoryController : MonoBehaviour
                         }
                         else
                         {
+                            isTextAll = true;
                             if (textNumber != showTexts.Length - 1)
                             {
                                 if (click == true)
@@ -185,6 +195,7 @@ public class TrueStoryController : MonoBehaviour
                         }
                         else
                         {
+                            isTextAll = true;
                             if (textNumber != showTexts.Length - 1)
                             {
                                 if (click == true)
@@ -225,8 +236,28 @@ public class TrueStoryController : MonoBehaviour
         }
         else if (textNumber == 10)
         {
+            BackgroundAudio.PlayOneShot(DeadUserAudio);
             backGroundObject.GetComponent<Image>().sprite = deathBackGroundSprite;
             ShowTMPText.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+        }
+
+        // 音楽処理
+        if (isSound == true && textCharNumber == showTexts[textNumber].Length)
+        {
+            // 音楽を止める
+            TypeWriterAudio.loop = false;
+            TypeWriterAudio.Stop();
+            isSound = false;
+            beforeNumber += 1;
+        }
+
+        if (isSound == false && displayText == "")
+        {
+            // タイプライタの音楽が流れていない
+            isTextAll = false;
+            isSound = true;
+            TypeWriterAudio.loop = true;
+            TypeWriterAudio.Play();
         }
     }
 
